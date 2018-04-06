@@ -9,7 +9,8 @@ defmodule Family do
   Counts the number of individuals
   """
   def count_individuals(file_path) do
-    parse(file_path)
+    file_path
+    |> parse
     |> Enum.filter(fn(x) -> String.contains?(x, @individual_tag) end)
     |> Enum.count
   end
@@ -21,7 +22,9 @@ defmodule Family do
     data = parse(file_path)
     index = Enum.find_index(data, fn(x) -> String.contains?(x, "0 @#{individual_id}@ INDI") end)
     name_row = Enum.at(data, index + 1)
-    Regex.run(~r/1 NAME (.*)/, name_row, [capture: :all_but_first]) |> List.first
+    ~r/1 NAME (.*)/
+    |> Regex.run(name_row, [capture: :all_but_first])
+    |> List.first
   end
 
   defp parse(file_path) do
