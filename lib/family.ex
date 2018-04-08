@@ -1,4 +1,6 @@
 defmodule Family do
+  alias Family.Individual
+
   @moduledoc """
   Family module is to be used in order to parse GEDCOM 5.5 files.
   """
@@ -6,25 +8,27 @@ defmodule Family do
   @individual_tag "INDI"
 
   @doc """
-  Counts the number of individuals
+  Returns a list of Individuals
   """
-  def count_individuals(file_path) do
+  def get_individuals(file_path) do
     file_path
     |> parse
     |> Enum.filter(fn(x) -> String.contains?(x, @individual_tag) end)
-    |> Enum.count
+    |> Enum.map(fn(x) -> %Individual{} end)
   end
 
   @doc """
-  Returns the name of an individual given an ID
+  Returns an Individual
   """
-  def get_individual_name(file_path, individual_id) do
+  def get_individual(file_path, individual_id) do
     data = parse(file_path)
     index = Enum.find_index(data, fn(x) -> String.contains?(x, "0 @#{individual_id}@ INDI") end)
     name_row = Enum.at(data, index + 1)
-    ~r/1 NAME (.*)/
+    name = ~r/1 NAME (.*)/
     |> Regex.run(name_row, [capture: :all_but_first])
     |> List.first
+
+    %Individual{name: name}
   end
 
   defp parse(file_path) do
