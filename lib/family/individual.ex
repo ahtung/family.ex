@@ -2,10 +2,13 @@ defmodule Family.Individual do
   alias __MODULE__
 
   @moduledoc """
-  An individual
+  An individual which are represented by the `INDI` tag.
   """
 
   defstruct [
-    :name
+    :id,
+    :name,
+    :sex,
+    :date_of_birth
   ]
 end
