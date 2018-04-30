@@ -9,6 +9,8 @@ defmodule Family do
   @name_tag "NAME"
   @gender_tag "SEX"
   @birthday_tag "BIRT"
+  @given_name_tag "GIVN"
+  @surname_tag "SURN"
 
   @doc """
   Returns a list of Individuals
@@ -46,6 +48,14 @@ defmodule Family do
           name = parse_value(1, @name_tag, row)
 
           {:cont, Map.put(acc, :name, name)}
+        Regex.match?(~r/2 #{@given_name_tag}/, row) ->
+          name = parse_value(2, @given_name_tag, row)
+
+          {:cont, Map.put(acc, :given_name, name)}
+        Regex.match?(~r/2 #{@surname_tag}/, row) ->
+          name = parse_value(2, @surname_tag, row)
+
+          {:cont, Map.put(acc, :surname, name)}
         Regex.match?(~r/1 #{@birthday_tag}/, row) ->
 
           {:cont, Map.put(acc, :date_of_birth, "")}

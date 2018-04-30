@@ -27,6 +27,8 @@ defmodule FamilyTest do
       assert individual |> Map.get(:id) == "I1"
       assert individual |> Map.get(:sex) == "M"
       assert individual |> Map.get(:date_of_birth) == "11 MAY 1984"
+      assert individual |> Map.get(:given_name) == "Dunya"
+      assert individual |> Map.get(:surname) == "Kirkali"
     end
   end
 
