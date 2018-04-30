@@ -31,7 +31,7 @@ defmodule Family do
     end)
     |> Enum.reduce_while(%Individual{id: individual_id}, fn(row, acc) ->
       cond do
-        Regex.match?(~r/0 .+ INDI/, row) && !Regex.match?(~r/0 @#{individual_id}@ INDI/, row)->
+        Regex.match?(~r/0 .+ INDI/, row) && !Regex.match?(~r/0 @#{individual_id}@ INDI/, row) ->
 
           {:halt, acc}
         Map.get(acc, :date_of_birth) == "" ->
@@ -50,6 +50,7 @@ defmodule Family do
 
           {:cont, Map.put(acc, :date_of_birth, "")}
         true ->
+
           {:cont, acc}
       end
     end)
@@ -57,9 +58,10 @@ defmodule Family do
 
   defp parse_value(depth, tag, row) do
     lowercased_tag = String.downcase(tag)
-    regex = ~r/#{depth} #{tag} (?<#{lowercased_tag}>.+)/
 
-    Regex.named_captures(regex, row) |> Map.get(lowercased_tag)
+    ~r/#{depth} #{tag} (?<#{lowercased_tag}>.+)/
+    |> Regex.named_captures(row)
+    |> Map.get(lowercased_tag)
   end
 
   defp parse(file_path) do

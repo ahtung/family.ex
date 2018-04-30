@@ -16,6 +16,20 @@ defmodule FamilyTest do
     end
   end
 
+  describe "dunya.ged" do
+    test "get_individuals/1" do
+      assert Family.get_individuals("priv/dunya.ged") |> Enum.count == 1
+    end
+
+    test "get_individual/2" do
+      individual = Family.get_individual("priv/dunya.ged", "I1")
+      assert individual |> Map.get(:name) == "Dunya /Kirkali/"
+      assert individual |> Map.get(:id) == "I1"
+      assert individual |> Map.get(:sex) == "M"
+      assert individual |> Map.get(:date_of_birth) == "11 MAY 1984"
+    end
+  end
+
   describe "ajmani.ged" do
     test "get_individuals/1 " do
       assert Family.get_individuals("priv/ajmani.ged") |> Enum.count == 679

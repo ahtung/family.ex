@@ -1,0 +1,44 @@
+0 HEAD
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+1 LANG English
+1 SOUR MYHERITAGE
+2 NAME MyHeritage Family Tree Builder
+2 VERS 5.5.1
+2 _RTLSAVE RTL
+2 CORP MyHeritage.com
+1 DEST MYHERITAGE
+1 DATE 06 APR 2018
+1 FILE Exported by MyHeritage.com from Dunya in Kirkali Family Site (23andMe) on Fri, 06 Apr 2018
+1 _PROJECT_GUID
+1 _EXPORTED_FROM_SITE_ID 291273891
+0 @I1@ INDI
+1 _UPD 15 JUL 2017 05:40:37 GMT -0500
+1 NAME Dunya /Kirkali/
+2 GIVN Dunya
+2 SURN Kirkali
+1 SEX M
+1 BIRT
+2 DATE 11 MAY 1984
+2 PLAC Ankara, Turkey
+1 RESI
+2 EMAIL dunyakirkali@@gmail.com
+1 RESI
+2 EMAIL dunyakirkali@@ahtung.co
+1 RELI No Religion / Atheist
+1 NATI Turkish
+1 EVEN Turkish, English, French, Dutch, Japanese
+2 TYPE Language spoken
+1 DSCR <DSCR><WEIGHT>74</WEIGHT><HEIGHT>1.84</HEIGHT></DSCR>
+1 IMMI
+2 DATE 2007
+2 PLAC Netherlands
+1 NATU
+2 DATE 2017
+2 PLAC Netherlands
+1 FAMS @F500048@
+1 FAMC @F1@
+1 RIN MH:I1
+1 _UID 556A191CCB99C1FFA1868FC018B31002
