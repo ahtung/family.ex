@@ -9,6 +9,7 @@ defmodule FamilyTest do
 
     test "get_individual/2" do
       individual = Family.get_individual("priv/test.ged", "I2")
+
       assert individual |> Map.get(:name) == "Elizabeth /Stansfield/"
       assert individual |> Map.get(:id) == "I2"
       assert individual |> Map.get(:sex) == "F"
@@ -23,6 +24,7 @@ defmodule FamilyTest do
 
     test "get_individual/2" do
       individual = Family.get_individual("priv/dunya.ged", "I1")
+
       assert individual |> Map.get(:name) == "Dunya /Kirkali/"
       assert individual |> Map.get(:id) == "I1"
       assert individual |> Map.get(:sex) == "M"
@@ -39,6 +41,7 @@ defmodule FamilyTest do
 
     test "get_individual/2 w/o date_of_birth" do
       individual = Family.get_individual("priv/ajmani.ged", "IND00665")
+
       assert individual |> Map.get(:name) == "Terry /Abramowski/"
       assert individual |> Map.get(:id) == "IND00665"
       assert individual |> Map.get(:sex) == "M"
@@ -47,6 +50,7 @@ defmodule FamilyTest do
 
     test "get_individual/2 w/ date_of_birth" do
       individual = Family.get_individual("priv/ajmani.ged", "IND00239")
+
       assert individual |> Map.get(:name) == "Aakshi /Ajmani/"
       assert individual |> Map.get(:id) == "IND00239"
       assert individual |> Map.get(:sex) == "F"

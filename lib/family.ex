@@ -19,7 +19,12 @@ defmodule Family do
     file_path
     |> parse
     |> Enum.filter(fn(x) -> String.contains?(x, @individual_tag) end)
-    |> Enum.map(fn(_) -> %Individual{} end)
+    |> Enum.map(fn(row) ->
+      ~r/0 @(?<id>.+)@ #{@individual_tag}/
+      |> Regex.named_captures(row)
+      |> Map.get("id")
+    end)
+    |> Enum.map(fn(row) -> get_individual(file_path, row) end)
   end
 
   @doc """
