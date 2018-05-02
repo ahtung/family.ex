@@ -7,6 +7,14 @@ defmodule FamilyTest do
       assert Family.get_individuals("priv/test.ged") |> Enum.count == 3
     end
 
+    test "individual_count/1 " do
+      assert Family.individual_count("priv/test.ged") == 3
+    end
+
+    test "family_count/1 " do
+      assert Family.family_count("priv/test.ged") == 1
+    end
+
     test "get_individual/2" do
       individual = Family.get_individual("priv/test.ged", "I2")
 
@@ -20,6 +28,10 @@ defmodule FamilyTest do
   describe "dunya.ged" do
     test "get_individuals/1" do
       assert Family.get_individuals("priv/dunya.ged") |> Enum.count == 1
+    end
+
+    test "individual_count/1 " do
+      assert Family.individual_count("priv/dunya.ged") == 1
     end
 
     test "get_individual/2" do
@@ -37,6 +49,10 @@ defmodule FamilyTest do
   describe "ajmani.ged" do
     test "get_individuals/1 " do
       assert Family.get_individuals("priv/ajmani.ged") |> Enum.count == 679
+    end
+
+    test "individual_count/1 " do
+      assert Family.individual_count("priv/ajmani.ged") == 679
     end
 
     test "get_individual/2 w/o date_of_birth" do

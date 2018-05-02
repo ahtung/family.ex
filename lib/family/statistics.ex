@@ -6,22 +6,25 @@ defmodule Family.Statistics do
   @doc """
   Returns the number of people and the number of families
   """
-  def count(tree) do
-    %{people: 679, families: 213}
+  def count(file_path) do
+    %{}
+    |> Map.put(:people, Family.individual_count(file_path))
+    |> Map.put(:families, Family.family_count(file_path))
   end
 
   @doc """
   Returns the living and deceased people
   """
-  def vitality(tree) do
+  def vitality(file_path) do
     %{living: 624, deceased: 55}
   end
 
   @doc """
   Returns the number male, female and unknown genders
   """
-  def sex(tree) do
-    tree
+  def sex(file_path) do
+    file_path
+    |> Family.get_individuals
     |> Enum.reduce(%{}, fn(individual, acc) ->
       case Map.get(individual, :sex) do
          "M" -> Map.update(acc, :male, 0, &(&1 + 1))
