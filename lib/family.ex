@@ -99,6 +99,23 @@ defmodule Family do
     |> Enum.count
   end
 
+  @doc """
+  Returns the number of living
+  """
+  def living_count(file_path) do
+    individual_count(file_path) - deceased_count(file_path)
+  end
+
+  @doc """
+  Returns the number of living
+  """
+  def deceased_count(file_path) do
+    file_path
+    |> parse
+    |> Enum.filter(fn(row) -> Regex.match?(~r/1 DEAT/, row) end)
+    |> Enum.count
+  end
+
   defp parse_value(depth, tag, row) do
     lowercased_tag = String.downcase(tag)
 

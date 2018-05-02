@@ -16,7 +16,9 @@ defmodule Family.Statistics do
   Returns the living and deceased people
   """
   def vitality(file_path) do
-    %{living: 624, deceased: 55}
+    %{}
+    |> Map.put(:living, Family.living_count(file_path))
+    |> Map.put(:deceased, Family.deceased_count(file_path))
   end
 
   @doc """

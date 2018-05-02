@@ -34,6 +34,10 @@ defmodule FamilyTest do
       assert Family.individual_count("priv/dunya.ged") == 1
     end
 
+    test "family_count/1 " do
+      assert Family.family_count("priv/dunya.ged") == 0
+    end
+
     test "get_individual/2" do
       individual = Family.get_individual("priv/dunya.ged", "I1")
 
@@ -53,6 +57,10 @@ defmodule FamilyTest do
 
     test "individual_count/1 " do
       assert Family.individual_count("priv/ajmani.ged") == 679
+    end
+
+    test "family_count/1 " do
+      assert Family.family_count("priv/ajmani.ged") == 213
     end
 
     test "get_individual/2 w/o date_of_birth" do
