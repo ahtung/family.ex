@@ -14,6 +14,10 @@ defmodule FamilyTest do
       assert individual |> Map.get(:sex) == "F"
       assert individual |> Map.get(:date_of_birth) == "MAY 2018"
     end
+
+    test "parse/1" do
+      assert Family.parse("priv/test.ged") |> Enum.count == 32
+    end
   end
 
   describe "dunya.ged" do
@@ -29,6 +33,10 @@ defmodule FamilyTest do
       assert individual |> Map.get(:date_of_birth) == "11 MAY 1984"
       assert individual |> Map.get(:given_name) == "Dunya"
       assert individual |> Map.get(:surname) == "Kirkali"
+    end
+
+    test "parse/1" do
+      assert Family.parse("priv/dunya.ged") |> Enum.count == 44
     end
   end
 
@@ -51,6 +59,10 @@ defmodule FamilyTest do
       assert individual |> Map.get(:id) == "IND00239"
       assert individual |> Map.get(:sex) == "F"
       assert individual |> Map.get(:date_of_birth) == "19 SEP 1993"
+    end
+
+    test "parse/1" do
+      assert Family.parse("priv/ajmani.ged") |> Enum.count == 5845
     end
   end
 end
