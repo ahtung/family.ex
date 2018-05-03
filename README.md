@@ -5,6 +5,12 @@
 [![Hex.pm version](https://img.shields.io/hexpm/v/family.svg?style=flat-square)](https://hex.pm/packages/family)
 [![Hex.pm downloads](https://img.shields.io/hexpm/dt/family.svg)](https://hex.pm/packages/family)
 
+## References
+
+- http://gedcom.idavid.hu
+- https://en.m.wikipedia.org/wiki/GEDCOM
+- https://github.com/nickreynke/python-gedcom
+
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
