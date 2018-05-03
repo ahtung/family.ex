@@ -74,9 +74,12 @@ defmodule Family do
     |> Map.get(lowercased_tag)
   end
 
-  defp parse(file_path) do
+  @doc """
+
+  """
+  def parse(file_path) do
     {:ok, data} = File.read(file_path)
 
-    data |> String.split("\n")
+    data |> String.split("\n", trim: true)
   end
 end
