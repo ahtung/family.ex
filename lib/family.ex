@@ -11,6 +11,16 @@ defmodule Family do
   @birthday_tag "BIRT"
   @given_name_tag "GIVN"
   @surname_tag "SURN"
+  @family_tag "FAM"
+
+  @doc """
+  Returns a list of families
+  """
+  def get_families(file_path) do
+    file_path
+    |> parse
+    |> Enum.filter(fn(row) -> Regex.match?(~r/0 @.+@ #{@family_tag}/, row) end)
+  end
 
   @doc """
   Returns a list of Individuals
@@ -18,8 +28,13 @@ defmodule Family do
   def get_individuals(file_path) do
     file_path
     |> parse
-    |> Enum.filter(fn(x) -> String.contains?(x, @individual_tag) end)
-    |> Enum.map(fn(_) -> %Individual{} end)
+    |> Enum.filter(fn(row) -> Regex.match?(~r/0 @.+@ #{@individual_tag}/, row) end)
+    |> Enum.map(fn(row) ->
+      ~r/0 @(?<id>.+)@ #{@individual_tag}/
+      |> Regex.named_captures(row)
+      |> Map.get("id")
+    end)
+    |> Enum.map(fn(row) -> get_individual(file_path, row) end)
   end
 
   @doc """
@@ -64,6 +79,41 @@ defmodule Family do
           {:cont, acc}
       end
     end)
+  end
+
+  @doc """
+  Returns the number of individuals
+  """
+  def individual_count(file_path) do
+    file_path
+    |> get_individuals
+    |> Enum.count
+  end
+
+  @doc """
+  Returns the number of families
+  """
+  def family_count(file_path) do
+    file_path
+    |> get_families
+    |> Enum.count
+  end
+
+  @doc """
+  Returns the number of living
+  """
+  def living_count(file_path) do
+    individual_count(file_path) - deceased_count(file_path)
+  end
+
+  @doc """
+  Returns the number of living
+  """
+  def deceased_count(file_path) do
+    file_path
+    |> parse
+    |> Enum.filter(fn(row) -> Regex.match?(~r/1 DEAT/, row) end)
+    |> Enum.count
   end
 
   defp parse_value(depth, tag, row) do
