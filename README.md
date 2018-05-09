@@ -19,7 +19,7 @@ by adding `family` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:family, "~> 0.1.1"}
+    {:family, "~> 0.3.0"}
   ]
 end
 ```
